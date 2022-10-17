@@ -195,7 +195,8 @@ void CEditControlStringSettingDlg::OnBnClickedTestBtn()
 		p_find_wnd->SetWindowText(L"Hello");
 	}*/
 
-
+	
+	// 멀티스레드에서도 깨지지 않는 안정성이 가장 높은 코드라인
 	CWnd find_wnd;
 	HWND h_find_wnd = NULL;
 	while (h_find_wnd = ::FindWindowEx(m_hWnd, h_find_wnd, L"edit", NULL))
