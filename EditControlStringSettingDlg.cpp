@@ -65,6 +65,7 @@ BEGIN_MESSAGE_MAP(CEditControlStringSettingDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_TEST_BTN, &CEditControlStringSettingDlg::OnBnClickedTestBtn)
 END_MESSAGE_MAP()
 
 
@@ -153,3 +154,54 @@ HCURSOR CEditControlStringSettingDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CEditControlStringSettingDlg::OnBnClickedTestBtn()
+{
+	/*
+	HWND h_find_wnd = NULL;
+	while (h_find_wnd = ::FindWindowEx(m_hWnd, h_find_wnd, L"edit", NULL))
+	{
+		::SetWindowText(h_find_wnd, L"hello");
+	}
+	*/
+
+
+	/*
+	HWND h_find_wnd = NULL;
+	CWnd* p_find_wnd = FindWindowEx(m_hWnd, NULL,L"edit", NULL);
+	while (p_find_wnd != NULL)
+	{
+		p_find_wnd->SetWindowText(L"Halo");
+		p_find_wnd = FindWindowEx(m_hWnd, p_find_wnd->m_hWnd, L"edit", NULL);
+	}
+	*/
+
+
+	/*CWnd *p_find_wnd;
+	HWND h_find_wnd = NULL;
+	while (p_find_wnd = FindWindowEx(m_hWnd, h_find_wnd, L"edit", NULL))
+	{
+		p_find_wnd->SetWindowText(L"what");
+		h_find_wnd = p_find_wnd->m_hWnd;
+	}*/
+
+
+	/*CWnd* p_find_wnd;
+	HWND h_find_wnd = NULL;
+	while (h_find_wnd = ::FindWindowEx(m_hWnd, h_find_wnd, L"edit", NULL))
+	{
+		p_find_wnd = CWnd::FromHandle(h_find_wnd);
+		p_find_wnd->SetWindowText(L"Hello");
+	}*/
+
+
+	CWnd find_wnd;
+	HWND h_find_wnd = NULL;
+	while (h_find_wnd = ::FindWindowEx(m_hWnd, h_find_wnd, L"edit", NULL))
+	{
+		find_wnd.Attach(h_find_wnd);
+		find_wnd.SetWindowText(L"Halo");
+		find_wnd.Detach();
+	}
+}
